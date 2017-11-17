@@ -61,7 +61,7 @@ public interface JpaJPQL extends CrudRepository<JpaVo, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "INSERT  into jpa_vo (name , password) value (name=:name,password=:password) ", nativeQuery = true)
+    @Query(value = "INSERT  into jpa_vo (name , password) value (:name,:password) ", nativeQuery = true)
     Integer insertJpql(@Param(value = "name") String name,
                        @Param(value = "password") String password);
 }
