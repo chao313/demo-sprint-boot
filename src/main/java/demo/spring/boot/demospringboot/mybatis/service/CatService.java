@@ -26,6 +26,10 @@ public class CatService {
         return mapper.insert(cat);
     }
 
+    public void insertRetrunId(Cat cat) {
+        mapper.insertReturnId(cat);
+    }
+
     public Integer update(Cat cat) {
         return mapper.updateById(cat);
     }

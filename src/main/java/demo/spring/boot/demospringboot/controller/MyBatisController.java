@@ -37,8 +37,15 @@ public class MyBatisController {
     }
 
     @PostMapping(value = "/insert")
-    public Integer queryById(@RequestBody Cat cat) {
+    public Integer insert(@RequestBody Cat cat) {
         return catService.insert(cat);
+    }
+
+    @PostMapping(value = "/insert-return-id")
+    public Cat insertRetrunId(@RequestBody Cat cat) {
+        catService.insertRetrunId(cat);
+
+        return cat;
     }
 
     @PutMapping(value = "/update")

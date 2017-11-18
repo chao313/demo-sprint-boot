@@ -2,6 +2,7 @@ package demo.spring.boot.demospringboot.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -25,6 +26,16 @@ public interface CatMapper {
      */
     @Insert(value = "insert into t_cat (name , age) values(#{name},#{age})")
     Integer insert(Cat cat);
+
+    /**
+     * 返回插入数据的信息
+     *
+     * 注意,返回的数据就在参数对象里面，不需要返回Integer
+     */
+    @Insert(value = "insert into t_cat (name , age) values(#{name},#{age})")
+    @Options(keyColumn = "id" , useGeneratedKeys = true , keyProperty = "id")
+    void insertReturnId(Cat cat);
+
 
     /**
      * 返回更新成功的数量
