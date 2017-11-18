@@ -3,6 +3,8 @@ package demo.spring.boot.demospringboot.mybatis.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import demo.spring.boot.demospringboot.mybatis.mapper.CatMapper;
 import demo.spring.boot.demospringboot.mybatis.vo.Cat;
 
@@ -16,6 +18,9 @@ public class CatService {
         return mapper.queryById(id);
     }
 
+    public List<Cat> queryByName(String name) {
+        return mapper.queryByName(name);
+    }
 
     public Integer insert(Cat cat) {
         return mapper.insert(cat);

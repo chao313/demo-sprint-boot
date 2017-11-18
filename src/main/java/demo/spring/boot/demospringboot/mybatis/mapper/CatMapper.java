@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import demo.spring.boot.demospringboot.mybatis.vo.Cat;
 
 @Component
@@ -14,6 +16,9 @@ public interface CatMapper {
 
     @Select(value = "select * from t_cat where id = #{id}")
     Cat queryById(@Param(value = "id") Integer idParam);
+
+    @Select(value = "select * from t_cat where name = #{name}")
+    List<Cat> queryByName(@Param(value = "name") String names);
 
     /**
      * insert sql 语句可以返回int 这里可以直接接受
