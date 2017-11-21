@@ -36,7 +36,7 @@ spring:
    ##数据sql
      datasource:
            driver-class-name: com.mysql.jdbc.Driver
-           url: jdbc:mysql://192.168.1.38:33061/springBootPro
+           url: jdbc:mysql://192.168.1.38:33061/springBootPro?autoReconnect=true
            username: root
            password: 123456
     ##jpa配置
