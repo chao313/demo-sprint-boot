@@ -3,13 +3,14 @@ server:
   port: 8081
   context-path: /chao
 
+redis.url.nodes: 192.168.1.38:16380,192.168.1.38:16381,192.168.1.38:16382
 
-spring:
-    ##配置redis，可以没有密码
-     redis:
-       host: 192.168.1.38
-       password: 123456
-       port: 16379
+#spring:
+#    ##配置redis，可以没有密码
+#     redis:
+#       host: 192.168.1.38
+#       password: 123456
+#       port: 16379
 
 
 
