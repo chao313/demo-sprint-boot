@@ -18,7 +18,7 @@ public class RestController {
     /**
      * 同时两个url
      */
-    @RequestMapping(value = {"/hello", "/hi"})
+    @GetMapping(value = {"/hello", "/hi"})
     public String hello() {
 
         return "哈喽";
@@ -27,7 +27,7 @@ public class RestController {
     /**
      * 获取路径中的变量
      */
-    @RequestMapping(value = {"/hello/{id}", "/{id}/hi"})
+    @GetMapping(value = {"/hello/{id}", "/{id}/hi"})
     public Integer hello2(@PathVariable(value = "id")
                                   Integer idPathVar) {
         return idPathVar;
@@ -37,7 +37,7 @@ public class RestController {
      * 获取参数?id=xxx 可以设置默认值 http://localhost:8081/chao/hi2 --> -1 http://localhost:8081/chao/hi2?id=
      * --> -1
      */
-    @RequestMapping(value = {"/hello2", "/hi2"})
+    @GetMapping(value = {"/hello2", "/hi2"})
     public Integer hello3(@RequestParam(value = "id", required = false, defaultValue = "-1")
                                   Integer idParam) {
         return idParam;

@@ -2,6 +2,7 @@ package demo.spring.boot.demospringboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +21,13 @@ public class YmlController {
     private String time;
 
 
-    @RequestMapping(value = {"/yml1"})
+    @GetMapping(value = {"/yml1"})
     public PersonInstance yml1() {
 
         return personInstance;
     }
 
-    @RequestMapping(value = {"/yml2"})
+    @GetMapping(value = {"/yml2"})
     public String yml2() {
 
         return time;
