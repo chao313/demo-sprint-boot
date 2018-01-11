@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.spring.boot.demospringboot.mybatis.dao.SellerDAO">
+
+    <select id="queryById" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.SellerVo">
+        SELECT
+        id,
+        name,
+        logo_url  as logoUrl ,
+        telephone,
+        address,
+        notice,
+        business_start as bussinessStart ,
+        business_end as bussinessEnd  ,
+        express_fee as expressFee ,
+        min_amount as minAmount
+        from t_seller
+        WHERE id = #{sellerId}
+   </select>
+
+    <update id="updateById" parameterType="demo.spring.boot.demospringboot.mybatis.vo.SellerVo">
+        UPDATE t_seller
+        set
+        logo_url = #{LogoUrl},
+        name = #{name} ,
+        telephone = #{telephone} ,
+        address = #{address} ,
+        notice = #{notice} ,
+        business_start = #{bussinessStart} ,
+        business_end =#{bussinessEnd} ,
+        express_fee = #{expressFee} ,
+        min_amount = #{minAmount}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="demo.spring.boot.demospringboot.mybatis.vo.SellerVo">
+         INSERT INTO
+         t_seller(`name`, `logo_url`, `telephone`, `address`, `notice`, `business_start`, `business_end`, `express_fee`, `min_amount`)
+          VALUES
+         (#{name}, #{LogoUrl},#{telephone} , #{address} , #{notice} , #{bussinessStart} , #{bussinessEnd} , #{expressFee}, #{minAmount});
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM
+         t_seller
+         WHERE  id = #{sellerId}
+    </delete>
+</mapper>
+

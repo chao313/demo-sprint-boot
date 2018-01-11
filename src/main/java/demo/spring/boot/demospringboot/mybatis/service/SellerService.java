@@ -3,24 +3,24 @@ package demo.spring.boot.demospringboot.mybatis.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import demo.spring.boot.demospringboot.mybatis.dao.CatDAO;
-import demo.spring.boot.demospringboot.mybatis.vo.Cat;
+import demo.spring.boot.demospringboot.mybatis.dao.SellerDAO;
+import demo.spring.boot.demospringboot.mybatis.vo.SellerVo;
 
 @Service
-public class CatService {
+public class SellerService {
 
     @Autowired
-    private CatDAO dao;
+    private SellerDAO dao;
 
-    public Cat queryById(Integer id) {
+    public SellerVo queryById(Integer id) {
         return dao.queryById(id);
     }
 
-    public Integer insert(Cat cat) {
+    public Integer insert(SellerVo cat) {
         return dao.insert(cat);
     }
 
-    public Integer update(Cat cat) {
+    public Integer update(SellerVo cat) {
         return dao.updateById(cat);
     }
 

@@ -94,6 +94,32 @@
             <version>0.8.0.RELEASE</version>
         </dependency>
 
+        <!--
+        lombok
+        -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--
+        为了解密微信小程序
+        -->
+        <dependency>
+            <groupId>bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+            <version>140</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
     </dependencies>
 
 

@@ -8,34 +8,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import demo.spring.boot.demospringboot.mybatis.service.CatService;
-import demo.spring.boot.demospringboot.mybatis.vo.Cat;
+import demo.spring.boot.demospringboot.mybatis.service.SellerService;
+import demo.spring.boot.demospringboot.mybatis.vo.SellerVo;
 
 @RestController
-public class MyBatisController {
+@RequestMapping(value = "/seller")
+public class SellerController {
 
     @Autowired
-    private CatService catService;
+    private SellerService sellerService;
 
     @GetMapping(value = "/queryById/{id}")
-    public Cat queryById(@PathVariable(value = "id") Integer id) {
-        return catService.queryById(id);
+    public SellerVo queryById(@PathVariable(value = "id") Integer id) {
+        return sellerService.queryById(id);
     }
 
     @PostMapping(value = "/insert")
-    public Integer queryById(@RequestBody Cat cat) {
-        return catService.insert(cat);
+    public Integer queryById(@RequestBody SellerVo cat) {
+        return sellerService.insert(cat);
     }
 
     @PutMapping(value = "/update")
-    public Integer updateById(@RequestBody Cat cat) {
-        return catService.update(cat);
+    public Integer updateById(@RequestBody SellerVo cat) {
+        return sellerService.update(cat);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public Integer deleteById(@PathVariable(value = "id") Integer id) {
-        return catService.delete(id);
+        return sellerService.delete(id);
     }
 }

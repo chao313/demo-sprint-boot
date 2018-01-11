@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.spring.boot.demospringboot.mybatis.dao.FoodDAO">
+
+    <select id="queryAll" resultType="demo.spring.boot.demospringboot.mybatis.vo.FoodVo">
+        SELECT
+        id,
+        title,
+        thumb_url as thumbUrl,
+        summary,
+        priority,
+        price,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_food
+    </select>
+
+
+    <select id="queryById" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.FoodVo">
+        SELECT
+        id,
+        title,
+        thumb_url as thumbUrl,
+        summary,
+        priority,
+        price,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_food
+        WHERE id = #{foodId}
+   </select>
+
+    <select id="queryByCategoryId" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.FoodVo">
+        SELECT
+        id,
+        title,
+        thumb_url as thumbUrl,
+        summary,
+        priority,
+        price,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_food
+        WHERE id = #{categoryId}
+    </select>
+
+
+    <update id="updateById" parameterType="demo.spring.boot.demospringboot.mybatis.vo.FoodVo">
+        UPDATE t_food
+        SET
+        title = #{title},
+        thumb_url = #{thumbUrl} ,
+        summary = #{summary} ,
+        priority = #{priority} ,
+        price = #{price} ,
+        update_time =#{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="demo.spring.boot.demospringboot.mybatis.vo.FoodVo">
+        INSERT INTO t_food
+               (`title`, `thumb_url`, `summary`, `priority`, `price`, `create_time`, `update_time`)
+        VALUES
+               (#{title}, #{thumbUrl}, #{summary} ,#{priority} , #{price} ,#{createTime}, #{updateTime});
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM
+         t_food
+         WHERE  id = #{foodId}
+    </delete>
+</mapper>
+

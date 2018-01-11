@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.spring.boot.demospringboot.mybatis.dao.CategoryDAO">
+
+    <select id="queryAll" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.CategoryVo">
+        SELECT
+        id,
+        title,
+        priority,
+        create_time as createTime,
+        update_time as updateTime
+        from t_category
+   </select>
+
+    <update id="updateById" parameterType="demo.spring.boot.demospringboot.mybatis.vo.CategoryVo">
+        UPDATE t_category
+        set
+        title = #{title},
+        priority = #{priority} ,
+        update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="demo.spring.boot.demospringboot.mybatis.vo.CategoryVo">
+         INSERT INTO t_category
+                ( `title`, `priority`, `create_time`, `update_time`)
+         VALUES (#{title},#{priority},#{createTime},#{updateTime});
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM
+         t_category
+         WHERE  id = #{categoryId}
+    </delete>
+</mapper>
+

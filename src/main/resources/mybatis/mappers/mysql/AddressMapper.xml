@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.spring.boot.demospringboot.mybatis.dao.AddressDAO">
+
+    <select id="queryById" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.AddressVo">
+        SELECT
+        id,
+        title,
+        thumb_url as thumbUrl,
+        summary,
+        priority,
+        price,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_address
+        WHERE id = #{addressid}
+   </select>
+
+    <select id="queryByUserId" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.AddressVo">
+        SELECT
+        id,
+        name,
+        gender,
+        mobile,
+        detail,
+        area,
+        create_time as createTime,
+        update_time as updateTime,
+        user_id
+        FROM t_address
+        WHERE user_id = #{userId}
+    </select>
+
+
+    <update id="updateById" parameterType="demo.spring.boot.demospringboot.mybatis.vo.AddressVo">
+        UPDATE t_address
+        SET
+        name = #{name},
+        mobile = #{mobile} ,
+        detail = #{detail} ,
+        area = #{area} ,
+        update_time =#{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="demo.spring.boot.demospringboot.mybatis.vo.AddressVo">
+        INSERT INTO t_address
+               (`name`, `mobile`, `detail`, `area`, `gender`, `user_id`,`update_time`)
+        VALUES
+               (#{name}, #{mobile}, #{detail} ,#{area} ,#{gender},#{userId}, #{updateTime});
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM
+         t_address
+         WHERE  id = #{addressId}
+    </delete>
+</mapper>
+

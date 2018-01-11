@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.spring.boot.demospringboot.mybatis.dao.UserDAO">
+
+    <select id="queryAll" resultType="demo.spring.boot.demospringboot.mybatis.vo.UserVo">
+        SELECT
+        id,
+        name,
+        password,
+        nick_name as nickName ,
+        gender,
+        avatar_url as avatarUrl,
+        role,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_user
+    </select>
+
+
+    <select id="queryById" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.UserVo">
+        SELECT
+        id,
+        name,
+        password,
+        nick_name as nickName ,
+        gender,
+        avatar_url as avatarUrl,
+        role,
+        phone,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_user
+        WHERE id = #{userId}
+   </select>
+
+    <select id="queryByRole" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.UserVo">
+        SELECT
+        id,
+        name,
+        password,
+        nick_name as nickName ,
+        gender,
+        avatar_url as avatarUrl,
+        role,
+        phone,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_user
+        WHERE role = #{role}
+    </select>
+
+
+    <update id="updateById" parameterType="demo.spring.boot.demospringboot.mybatis.vo.UserVo">
+        UPDATE t_user
+        SET
+        name = #{name},
+        password =#{password},
+        nick_name = #{nickName} ,
+        gender = #{gender},
+        avatar_url = #{avatarUrl},
+        role = #{role},
+        phone = #{phone},
+        update_time as #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="demo.spring.boot.demospringboot.mybatis.vo.UserVo">
+        INSERT INTO t_user
+               (`name`, `password`, `nick_name`, `gender`, `avatar_url`,`role`,`phone`, `create_time`, `update_time`)
+        VALUES
+               (#{name}, #{password}, #{nickName} ,#{gender} , #{avatarUrl} ,#{role} ,#{phone} ,#{createTime}, #{updateTime});
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM
+         t_user
+         WHERE  id = #{userId}
+    </delete>
+</mapper>
+
