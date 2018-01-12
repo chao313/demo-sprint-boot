@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo.spring.boot.demospringboot.mybatis.dao.OrderDAO">
+
+    <select id="queryById" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.OrderVo">
+        SELECT
+        id,
+        user_id as userId,
+        address_id as AddressId,
+        title,
+        quantity,
+        express_fee as expressFee,
+        amount,
+        total,
+        status,
+        detail,
+        carts_string as cartsString,
+        create_time as createTime,
+        update_time as updateTime
+        FROM t_order
+        WHERE id = #{orderId}
+   </select>
+
+    <select id="queryByUserId" parameterType="java.lang.Integer"
+            resultType="demo.spring.boot.demospringboot.mybatis.vo.OrderVo">
+         SELECT
+         id,
+         user_id as userId,
+         address_id as AddressId,
+         title,
+         quantity,
+         express_fee as expressFee,
+         amount,
+         total,
+         status,
+         detail,
+         carts_string as cartsString,
+         create_time as createTime,
+         update_time as updateTime
+         FROM t_order
+         WHERE user_id = #{userId}
+         ORDER BY update_time
+    </select>
+
+
+    <update id="updateById" parameterType="demo.spring.boot.demospringboot.mybatis.vo.OrderVo">
+        UPDATE t_order
+        SET
+        user_id = #{userId},
+        address_id = #{addressId},
+        title = #{title} ,
+        quantity = #{quantity} ,
+        express_fee = #{expressFee} ,
+        amount = #{amount} ,
+        total,
+        status,
+        detail,
+        carts_string as cartsString,
+        update_time =#{updateTime}
+        WHERE id = #{id}
+    </update>
+ <insert id="insert" parameterType="demo.spring.boot.demospringboot.mybatis.vo.OrderVo">
+        INSERT INTO t_order
+               (`user_id`,`address_id`, `title`, `quantity`, `express_fee`, `amount`, `total`,`status`,`detail`, `carts_string`,`create_time`, `update_time`)
+        VALUES
+               (#{userId},#{addressId}, #{title}, #{quantity} ,#{expressFee} , #{amount} , #{total} ,#{status} , #{detail} ,#{cartsString} ,#{createTime}, #{updateTime});
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+         DELETE FROM
+         t_order
+         WHERE  id = #{orderId}
+    </delete>
+</mapper>
+

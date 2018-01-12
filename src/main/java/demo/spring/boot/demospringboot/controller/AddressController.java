@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 import demo.spring.boot.demospringboot.mybatis.service.AddressService;
@@ -36,16 +37,19 @@ public class AddressController {
 
     @PostMapping(value = "/insert")
     public boolean insert(@RequestBody AddressVo vo) {
+        vo.setUpdateTime(new Date());
+        vo.setCreateTime(new Date());
         return service.insert(vo);
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/updateById")
     public Integer updateById(@RequestBody AddressVo vo) {
+        vo.setUpdateTime(new Date());
         return service.update(vo);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public Integer deleteById(@PathVariable(value = "id") Integer id) {
+    public boolean deleteById(@PathVariable(value = "id") Integer id) {
         return service.delete(id);
     }
 }

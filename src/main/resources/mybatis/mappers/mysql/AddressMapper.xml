@@ -7,15 +7,16 @@
             resultType="demo.spring.boot.demospringboot.mybatis.vo.AddressVo">
         SELECT
         id,
-        title,
-        thumb_url as thumbUrl,
-        summary,
-        priority,
-        price,
+        name,
+        gender,
+        mobile,
+        detail,
+        area,
         create_time as createTime,
-        update_time as updateTime
+        update_time as updateTime,
+        user_id as userId
         FROM t_address
-        WHERE id = #{addressid}
+        WHERE id = #{addressId}
    </select>
 
     <select id="queryByUserId" parameterType="java.lang.Integer"
@@ -29,9 +30,10 @@
         area,
         create_time as createTime,
         update_time as updateTime,
-        user_id
+        user_id as userId
         FROM t_address
         WHERE user_id = #{userId}
+        ORDER BY update_time
     </select>
 
 

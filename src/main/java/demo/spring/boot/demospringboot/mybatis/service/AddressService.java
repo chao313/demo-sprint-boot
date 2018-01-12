@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import demo.spring.boot.demospringboot.mybatis.dao.AddressDAO;
-import demo.spring.boot.demospringboot.mybatis.dao.FoodDAO;
 import demo.spring.boot.demospringboot.mybatis.vo.AddressVo;
-import demo.spring.boot.demospringboot.mybatis.vo.FoodVo;
 
 
 @Service
@@ -33,8 +31,8 @@ public class AddressService {
         return dao.updateById(vo);
     }
 
-    public Integer delete(Integer id) {
-        return dao.deleteById(id);
+    public boolean delete(Integer id) {
+        return dao.deleteById(id) > 0 ? true : false;
     }
 
 }
