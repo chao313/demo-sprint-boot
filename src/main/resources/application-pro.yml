@@ -2,3 +2,11 @@
 server:
   port: 8081
   context-path: /dzr
+
+
+spring:
+  datasource:
+    username: root
+    url: jdbc:mysql://139.199.57.44:33061/dzr?useUnicode=true&characterEncoding=UTF-8
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
