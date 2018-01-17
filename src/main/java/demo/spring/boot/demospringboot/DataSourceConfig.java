@@ -5,21 +5,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.jolbox.bonecp.BoneCPDataSource;
 
-import javax.sql.DataSource;
-
 @Configuration
 public class DataSourceConfig {
 
-    @Value(value = "${jdbc.driver-class-name}")
+    @Value(value = "${spring.datasource.driver-class-name}")
     private String jdbcDriverClassName;
 
-    @Value(value = "${jdbc.url}")
+    @Value(value = "${spring.datasource.url}")
     private String jdbcUrl;
 
-    @Value(value = "${jdbc.userName}")
+    @Value(value = "${spring.datasource.username}")
     private String userName;
 
-    @Value(value = "${jdbc.password}")
+    @Value(value = "${spring.datasource.password}")
     private String password;
 
 

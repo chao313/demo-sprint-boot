@@ -1,4 +1,9 @@
 ##控制使用哪个配置
+server.port: 8443
+server.ssl.key-store: classpath:www.chaohaiwang.cn.jks
+server.ssl.key-store-password: up045448o6s7j
+server.ssl.key-password: up045448o6s7j
+
 spring:
      profiles:
        active: pro

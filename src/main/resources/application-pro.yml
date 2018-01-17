@@ -1,6 +1,5 @@
 ## pro环境使用是配置
 server:
-  port: 8081
   context-path: /dzr
 
 
