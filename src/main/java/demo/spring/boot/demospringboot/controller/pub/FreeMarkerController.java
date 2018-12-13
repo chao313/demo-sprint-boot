@@ -106,7 +106,7 @@ public class FreeMarkerController {
             List<String> OtherObjects = qIngYunSDK.getResult(sh);
             List<String> filterOtherObjects = new ArrayList<>();
             for (String path : OtherObjects) {
-                String pathtmp = BUCKET + "/" + path.replaceAll("Directory\\s*", "");
+                String pathtmp = BUCKET + "/" + path.replaceAll("^.*\\s", "");
                 filterOtherObjects.add(pathtmp);
             }
             map.put("OtherObjects", filterOtherObjects);
