@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="0" style="margin-left: 5% ; margin-top: 5%">
+    <tr>
+        <td> . . /
+        </td>
+    </tr>
+    <#list OtherObjects as OtherObject>
+    <tr>
+        <td><a href="./getOtherDir?sh=ls ${OtherObject}&BUCKET=${BUCKET}">${OtherObject}</a>
+        </td>
+    </tr>
+</#list>
+</table>
+</body>
+</html>

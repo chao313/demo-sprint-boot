@@ -103,6 +103,13 @@ url:
     authenticated: /private/**
 
 
+qingyun:
+  APP_KEY: KJPXQFLZJVXLPOGBXZSH
+  ACCESS_KEY: UmcjUCQCSBT6rJWMIWxsd3weRylm2XFE8xDNVotp
+  ZONE: sh1a
+  CMD: /Users/sgx/Downloads/qsctl
+
+
 
 
 

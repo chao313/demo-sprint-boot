@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="0" style="margin-left: 5% ; margin-top: 5%">
+    <tr>
+        <td> . . /
+        </td>
+    </tr>
+    <#list buckets as bucket>
+    <tr>
+        <td><a href="./getFirstDir?sh=ls ${bucket}&BUCKET=${bucket}">${bucket}</a>
+        </td>
+    </tr>
+</#list>
+</table>
+</body>
+</html>
