@@ -3,6 +3,7 @@ package demo.spring.boot.demospringboot.controller.pub;
 
 import com.qingstor.sdk.exception.QSException;
 import com.qingstor.sdk.service.Types;
+import demo.spring.boot.demospringboot.mybatis.vo.PathAndPic;
 import demo.spring.boot.demospringboot.util.QIngYunSDK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,15 +104,32 @@ public class FreeMarkerController {
                               @RequestParam(value = "sh", required = false, defaultValue = "ls") String sh,
                               @RequestParam(value = "BUCKET", required = false, defaultValue = "") String BUCKET) {
         try {
-            List<String> OtherObjects = qIngYunSDK.getResult(sh);
-            List<String> filterOtherObjects = new ArrayList<>();
-            for (String path : OtherObjects) {
-                String pathtmp = BUCKET + "/" + path.replaceAll("^.*\\s", "");
-                filterOtherObjects.add(pathtmp);
+            if (sh.endsWith(".jpg") || sh.endsWith(".png")) {
+                //如果是请求是图片->展示图片
+                String path = sh.replaceAll("^ls\\s*/$", "");
+                String url = qIngYunSDK.getPreviewUrl(sh.replaceAll("^ls\\s*[a-z|A-Z|-]*/", ""), BUCKET);
+                map.put("path", path);
+                map.put("url", url);
+                return "Preview";
+            } else {
+                List<String> OtherObjects = qIngYunSDK.getResult(sh);
+                List<String> filterOtherObjects = new ArrayList<>();
+                List<PathAndPic> pathAndPics = new ArrayList<>();//存储对应关系
+                for (String path : OtherObjects) {
+                    String pathtmp = BUCKET + "/" + path.replaceAll("^.*\\s", "");
+                    filterOtherObjects.add(pathtmp);
+                    PathAndPic pathAndPic = new PathAndPic();
+                    pathAndPic.setPath(pathtmp);
+                    if(pathtmp.endsWith(".jpg") || pathtmp.endsWith(".png")){
+                        String url = qIngYunSDK.getPreviewUrl(pathtmp.replaceAll("^\\s*[a-z|A-Z|-]*/", ""), BUCKET);
+                        pathAndPic.setUrl(url);
+                    }
+                    pathAndPics.add(pathAndPic);//加入到list中
+                }
+                map.put("pathAndPics", pathAndPics);
+                map.put("BUCKET", BUCKET);
+                return "OtherObjectsAndPre";
             }
-            map.put("OtherObjects", filterOtherObjects);
-            map.put("BUCKET", BUCKET);
-            return "OtherObjects";
         } catch (Exception e) {
             e.printStackTrace();
             map.put("error", e.getMessage());
