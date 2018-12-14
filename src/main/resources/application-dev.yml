@@ -33,32 +33,6 @@ spring:
     cache: false
     suffix: .html
 
-  ##数据sql
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/springBoot
-    username: root
-    password: 123456
-  ##jpa配置
-  jpa:
-    hibernate:
-      ##ddl-auto: create table if exists jpa_vo
-      ##ddl-auto: create-drop 应用停下来时候删除
-      ##ddl-auto: update 更新表结构
-      ddl-auto: update
-    show-sql: true
-  ##配置redis，可以没有密码
-  redis:
-    host: 192.168.1.38
-    password: 123456
-    port: 16379
-
-
-
-
-
-
-
 
 
 mouth: 11
@@ -75,26 +49,7 @@ person:
 
 
 
-#数据源
-jdbc1:
-  driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://127.0.0.1:3306/springBoot
-  username: root
-  password: 123456
 
-#数据源
-jdbc2:
-  driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://127.0.0.1:3306/springBoot
-  username: root
-  password: 123456
-
-#数据源
-jdbc3:
-  driver-class-name: com.mysql.jdbc.Driver
-  url: jdbc:mysql://127.0.0.1:3306/springBoot
-  username: root
-  password: 123456
 
 url:
   security:
@@ -104,10 +59,11 @@ url:
 
 
 qingyun:
-  APP_KEY: KJPXQFLZJVXLPOGBXZSH
-  ACCESS_KEY: UmcjUCQCSBT6rJWMIWxsd3weRylm2XFE8xDNVotp
+  APP_KEY: DDEZFCHJEZTNNLFHGFPG
+  ACCESS_KEY: Hehu9aK5gXDc2hsSCzsdEqnW668lMpPI6TxZKaxV
   ZONE: sh1a
-  CMD: /Users/sgx/Downloads/qsctl
+  CMD: /home/qsctl
+#  CMD: /Users/sgx/Downloads/qsctl
 
 
 

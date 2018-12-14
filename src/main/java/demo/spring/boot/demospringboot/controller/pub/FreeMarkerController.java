@@ -31,18 +31,16 @@ public class FreeMarkerController {
         return "freeMarker";
     }
 
-//    @GetMapping(value = "/getBuckets")
-//    public String getBuckets(Map<String, Object> map) {
-//        try {
-//            List<Types.BucketModel> buckets = qIngYunSDK.getBuckets();
-//            map.put("buckets", buckets);
-//            return "buckets";
-//        } catch (QSException e) {
-//            e.printStackTrace();
-//            map.put("error", e.getMessage());
-//            return "ERROR";
-//        }
-//    }
+    @GetMapping(value = "/staticBuckets")
+    public String getBuckets(Map<String, Object> map) {
+        try {
+            return "staticBuckets";
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("error", e.getMessage());
+            return "ERROR";
+        }
+    }
 
     @GetMapping(value = "/getObjects")
     public String getObjects(Map<String, Object> map,
@@ -86,7 +84,8 @@ public class FreeMarkerController {
             List<String> firstDir = qIngYunSDK.getResult(sh);
             List<String> filterFirstDir = new ArrayList<>();
             for (String path : firstDir) {
-                String pathtmp = BUCKET + "/" + path.replaceAll("Directory\\s*", "");
+//                String pathtmp = BUCKET + "/" + path.replaceAll("Directory\\s*", "");
+                String pathtmp = BUCKET + "/" + path.replaceAll(".*\\s", "");
                 filterFirstDir.add(pathtmp);
             }
             map.put("firstDirs", filterFirstDir);
@@ -104,12 +103,21 @@ public class FreeMarkerController {
                               @RequestParam(value = "sh", required = false, defaultValue = "ls") String sh,
                               @RequestParam(value = "BUCKET", required = false, defaultValue = "") String BUCKET) {
         try {
-            if (sh.endsWith(".jpg") || sh.endsWith(".png")) {
+            if (sh.endsWith(".jpg")
+                    || sh.endsWith(".png")
+                    || sh.endsWith(".xls")
+                    || sh.endsWith(".xlsx")
+                    || sh.endsWith(".docx")
+                    || sh.endsWith(".ftl")
+                    || sh.endsWith(".jar")) {
                 //如果是请求是图片->展示图片
-                String path = sh.replaceAll("^ls\\s*/$", "");
+                String path = sh.replaceAll("ls\\s{1,}", "");
                 String url = qIngYunSDK.getPreviewUrl(sh.replaceAll("^ls\\s*[a-z|A-Z|-]*/", ""), BUCKET);
                 map.put("path", path);
                 map.put("url", url);
+                if (sh.endsWith(".jpg") || sh.endsWith(".png")) {
+                    map.put("isImage", true);
+                }
                 return "Preview";
             } else {
                 List<String> OtherObjects = qIngYunSDK.getResult(sh);
@@ -120,7 +128,7 @@ public class FreeMarkerController {
                     filterOtherObjects.add(pathtmp);
                     PathAndPic pathAndPic = new PathAndPic();
                     pathAndPic.setPath(pathtmp);
-                    if(pathtmp.endsWith(".jpg") || pathtmp.endsWith(".png")){
+                    if (pathtmp.endsWith(".jpg") || pathtmp.endsWith(".png")) {
                         String url = qIngYunSDK.getPreviewUrl(pathtmp.replaceAll("^\\s*[a-z|A-Z|-]*/", ""), BUCKET);
                         pathAndPic.setUrl(url);
                     }
